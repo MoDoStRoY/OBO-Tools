@@ -63,6 +63,17 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button5 = new System.Windows.Forms.Button();
             this.correctionSum = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -340,9 +351,9 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(247, 319);
+            this.button5.Location = new System.Drawing.Point(247, 349);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(987, 102);
+            this.button5.Size = new System.Drawing.Size(987, 72);
             this.button5.TabIndex = 71;
             this.button5.Text = "Сделать заебись!";
             this.button5.UseVisualStyleBackColor = true;
@@ -364,11 +375,128 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label16.TabIndex = 72;
             this.label16.Text = "Сумма корректировки:";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(496, 316);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(191, 27);
+            this.textBox1.TabIndex = 75;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(496, 292);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(106, 20);
+            this.label17.TabIndex = 74;
+            this.label17.Text = "Дата платежа:";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(12, 91);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(228, 29);
+            this.button6.TabIndex = 76;
+            this.button6.Text = "Сбросить кроме даты";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(12, 126);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(228, 29);
+            this.button7.TabIndex = 77;
+            this.button7.Text = "Сбросить всё";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 275);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(199, 20);
+            this.label18.TabIndex = 78;
+            this.label18.Text = "Решение на первой линии:";
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Да",
+            "Нет"});
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 298);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(155, 48);
+            this.checkedListBox1.TabIndex = 79;
+            // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Items.AddRange(new object[] {
+            "N/A регион ошиб.номера",
+            "N/A регион коррект.номера",
+            "N/A часовой пояс платежа",
+            "Кривой корректный номер",
+            "Кривой ошибочный номер"});
+            this.checkedListBox2.Location = new System.Drawing.Point(12, 372);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(228, 114);
+            this.checkedListBox2.TabIndex = 81;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 349);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(101, 20);
+            this.label19.TabIndex = 80;
+            this.label19.Text = "Ошибки в ТТ:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(13, 175);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(193, 20);
+            this.label20.TabIndex = 82;
+            this.label20.Text = "Ошибки (не обязательно):";
+            // 
+            // checkedListBox3
+            // 
+            this.checkedListBox3.FormattingEnabled = true;
+            this.checkedListBox3.Items.AddRange(new object[] {
+            "CRM",
+            "WD"});
+            this.checkedListBox3.Location = new System.Drawing.Point(13, 222);
+            this.checkedListBox3.Name = "checkedListBox3";
+            this.checkedListBox3.Size = new System.Drawing.Size(155, 48);
+            this.checkedListBox3.TabIndex = 84;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(13, 199);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(129, 20);
+            this.label21.TabIndex = 83;
+            this.label21.Text = "Источник заявки:";
+            // 
             // PaymentCorrectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 763);
+            this.Controls.Add(this.checkedListBox3);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.checkedListBox2);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.correctionSum);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.button5);
@@ -446,5 +574,16 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.TextBox correctionSum;
         private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label18;
+        public System.Windows.Forms.CheckedListBox checkedListBox1;
+        public System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        public System.Windows.Forms.CheckedListBox checkedListBox3;
+        private System.Windows.Forms.Label label21;
     }
 }
