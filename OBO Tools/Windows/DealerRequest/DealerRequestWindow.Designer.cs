@@ -160,6 +160,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.Controls.Add(this.button8);
             this.Name = "DealerRequestWindow";
             this.Text = "OBO Tools";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosedForm);
             this.ResumeLayout(false);
             this.PerformLayout();
 

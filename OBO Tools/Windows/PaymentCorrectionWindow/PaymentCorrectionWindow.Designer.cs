@@ -48,8 +48,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.fullCorrectionCLB = new System.Windows.Forms.CheckedListBox();
-            this.reparationCLB = new System.Windows.Forms.CheckedListBox();
             this.label12 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -63,17 +61,19 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button5 = new System.Windows.Forms.Button();
             this.correctionSum = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.paymentDate = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.errorsInTicket = new System.Windows.Forms.CheckedListBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
+            this.sourceTicket = new System.Windows.Forms.CheckedListBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.fullCorrectionCB = new System.Windows.Forms.CheckBox();
+            this.reparationCB = new System.Windows.Forms.CheckBox();
+            this.incorrectTicket = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -84,6 +84,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button1.TabIndex = 37;
             this.button1.Text = "Назад";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.BackBtn);
             // 
             // label1
             // 
@@ -240,32 +241,10 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label11.TabIndex = 55;
             this.label11.Text = "Корректировка в полном объёме?";
             // 
-            // fullCorrectionCLB
-            // 
-            this.fullCorrectionCLB.FormattingEnabled = true;
-            this.fullCorrectionCLB.Items.AddRange(new object[] {
-            "Да",
-            "Нет"});
-            this.fullCorrectionCLB.Location = new System.Drawing.Point(758, 91);
-            this.fullCorrectionCLB.Name = "fullCorrectionCLB";
-            this.fullCorrectionCLB.Size = new System.Drawing.Size(155, 48);
-            this.fullCorrectionCLB.TabIndex = 56;
-            // 
-            // reparationCLB
-            // 
-            this.reparationCLB.FormattingEnabled = true;
-            this.reparationCLB.Items.AddRange(new object[] {
-            "Да",
-            "Нет"});
-            this.reparationCLB.Location = new System.Drawing.Point(758, 169);
-            this.reparationCLB.Name = "reparationCLB";
-            this.reparationCLB.Size = new System.Drawing.Size(155, 48);
-            this.reparationCLB.TabIndex = 58;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(758, 145);
+            this.label12.Location = new System.Drawing.Point(758, 118);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(233, 20);
             this.label12.TabIndex = 57;
@@ -279,6 +258,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button3.TabIndex = 64;
             this.button3.Text = "Копировать";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.CopyDecisionBtn);
             // 
             // label14
             // 
@@ -305,6 +285,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button4.TabIndex = 67;
             this.button4.Text = "Копировать";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.CopyCashCommentBtn);
             // 
             // label15
             // 
@@ -331,6 +312,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button2.TabIndex = 70;
             this.button2.Text = "Копировать";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.CopyInvoiceCommentBtn);
             // 
             // label13
             // 
@@ -361,7 +343,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // correctionSum
             // 
-            this.correctionSum.Location = new System.Drawing.Point(758, 253);
+            this.correctionSum.Location = new System.Drawing.Point(758, 192);
             this.correctionSum.Name = "correctionSum";
             this.correctionSum.Size = new System.Drawing.Size(191, 27);
             this.correctionSum.TabIndex = 73;
@@ -369,18 +351,18 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(758, 229);
+            this.label16.Location = new System.Drawing.Point(758, 168);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(168, 20);
             this.label16.TabIndex = 72;
             this.label16.Text = "Сумма корректировки:";
             // 
-            // textBox1
+            // paymentDate
             // 
-            this.textBox1.Location = new System.Drawing.Point(496, 316);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 27);
-            this.textBox1.TabIndex = 75;
+            this.paymentDate.Location = new System.Drawing.Point(496, 316);
+            this.paymentDate.Name = "paymentDate";
+            this.paymentDate.Size = new System.Drawing.Size(191, 27);
+            this.paymentDate.TabIndex = 75;
             // 
             // label17
             // 
@@ -399,6 +381,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button6.TabIndex = 76;
             this.button6.Text = "Сбросить кроме даты";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.ClearAllWithoutDateBtn);
             // 
             // button7
             // 
@@ -408,6 +391,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button7.TabIndex = 77;
             this.button7.Text = "Сбросить всё";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.ClearAllBtn);
             // 
             // label18
             // 
@@ -418,35 +402,24 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label18.TabIndex = 78;
             this.label18.Text = "Решение на первой линии:";
             // 
-            // checkedListBox1
+            // errorsInTicket
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Да",
-            "Нет"});
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 298);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(155, 48);
-            this.checkedListBox1.TabIndex = 79;
-            // 
-            // checkedListBox2
-            // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
+            this.errorsInTicket.FormattingEnabled = true;
+            this.errorsInTicket.Items.AddRange(new object[] {
             "N/A регион ошиб.номера",
             "N/A регион коррект.номера",
             "N/A часовой пояс платежа",
             "Кривой корректный номер",
             "Кривой ошибочный номер"});
-            this.checkedListBox2.Location = new System.Drawing.Point(12, 372);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(228, 114);
-            this.checkedListBox2.TabIndex = 81;
+            this.errorsInTicket.Location = new System.Drawing.Point(13, 350);
+            this.errorsInTicket.Name = "errorsInTicket";
+            this.errorsInTicket.Size = new System.Drawing.Size(228, 114);
+            this.errorsInTicket.TabIndex = 81;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 349);
+            this.label19.Location = new System.Drawing.Point(13, 327);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 20);
             this.label19.TabIndex = 80;
@@ -461,16 +434,16 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label20.TabIndex = 82;
             this.label20.Text = "Ошибки (не обязательно):";
             // 
-            // checkedListBox3
+            // sourceTicket
             // 
-            this.checkedListBox3.FormattingEnabled = true;
-            this.checkedListBox3.Items.AddRange(new object[] {
+            this.sourceTicket.FormattingEnabled = true;
+            this.sourceTicket.Items.AddRange(new object[] {
             "CRM",
             "WD"});
-            this.checkedListBox3.Location = new System.Drawing.Point(13, 222);
-            this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(155, 48);
-            this.checkedListBox3.TabIndex = 84;
+            this.sourceTicket.Location = new System.Drawing.Point(13, 222);
+            this.sourceTicket.Name = "sourceTicket";
+            this.sourceTicket.Size = new System.Drawing.Size(155, 48);
+            this.sourceTicket.TabIndex = 84;
             // 
             // label21
             // 
@@ -481,21 +454,53 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label21.TabIndex = 83;
             this.label21.Text = "Источник заявки:";
             // 
+            // fullCorrectionCB
+            // 
+            this.fullCorrectionCB.AutoSize = true;
+            this.fullCorrectionCB.Location = new System.Drawing.Point(758, 91);
+            this.fullCorrectionCB.Name = "fullCorrectionCB";
+            this.fullCorrectionCB.Size = new System.Drawing.Size(49, 24);
+            this.fullCorrectionCB.TabIndex = 85;
+            this.fullCorrectionCB.Text = "Да";
+            this.fullCorrectionCB.UseVisualStyleBackColor = true;
+            // 
+            // reparationCB
+            // 
+            this.reparationCB.AutoSize = true;
+            this.reparationCB.Location = new System.Drawing.Point(758, 141);
+            this.reparationCB.Name = "reparationCB";
+            this.reparationCB.Size = new System.Drawing.Size(49, 24);
+            this.reparationCB.TabIndex = 86;
+            this.reparationCB.Text = "Да";
+            this.reparationCB.UseVisualStyleBackColor = true;
+            // 
+            // incorrectTicket
+            // 
+            this.incorrectTicket.AutoSize = true;
+            this.incorrectTicket.Location = new System.Drawing.Point(13, 298);
+            this.incorrectTicket.Name = "incorrectTicket";
+            this.incorrectTicket.Size = new System.Drawing.Size(49, 24);
+            this.incorrectTicket.TabIndex = 87;
+            this.incorrectTicket.Text = "Да";
+            this.incorrectTicket.UseVisualStyleBackColor = true;
+            // 
             // PaymentCorrectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 763);
-            this.Controls.Add(this.checkedListBox3);
+            this.Controls.Add(this.incorrectTicket);
+            this.Controls.Add(this.reparationCB);
+            this.Controls.Add(this.fullCorrectionCB);
+            this.Controls.Add(this.sourceTicket);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.checkedListBox2);
+            this.Controls.Add(this.errorsInTicket);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.paymentDate);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.correctionSum);
             this.Controls.Add(this.label16);
@@ -509,9 +514,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.decision);
-            this.Controls.Add(this.reparationCLB);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.fullCorrectionCLB);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.paymentSum);
@@ -533,6 +536,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.Controls.Add(this.button1);
             this.Name = "PaymentCorrectionWindow";
             this.Text = "OBO Tools";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosedForm);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -559,8 +563,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        public System.Windows.Forms.CheckedListBox fullCorrectionCLB;
-        public System.Windows.Forms.CheckedListBox reparationCLB;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label14;
@@ -574,16 +576,18 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.TextBox correctionSum;
         private System.Windows.Forms.Label label16;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox paymentDate;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label18;
-        public System.Windows.Forms.CheckedListBox checkedListBox1;
-        public System.Windows.Forms.CheckedListBox checkedListBox2;
+        public System.Windows.Forms.CheckedListBox errorsInTicket;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        public System.Windows.Forms.CheckedListBox checkedListBox3;
+        public System.Windows.Forms.CheckedListBox sourceTicket;
         private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.CheckBox fullCorrectionCB;
+        public System.Windows.Forms.CheckBox reparationCB;
+        public System.Windows.Forms.CheckBox incorrectTicket;
     }
 }

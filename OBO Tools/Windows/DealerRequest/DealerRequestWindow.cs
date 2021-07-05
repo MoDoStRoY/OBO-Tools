@@ -20,6 +20,16 @@ namespace OBO_Tools.Windows.DealerRequest
             DealerRequestLogic.ShowWindow();
         }
 
+        private void ClosedForm(object sender, FormClosedEventArgs e)
+        {
+            DealerRequestLogic.ClosedForm();
+        }
+
+        private void BackBtn(object sender, EventArgs e)
+        {
+            DealerRequestLogic.BackBtn();
+        }
+
         private void LoadContactsBtn(object sender, EventArgs e)
         {
             DealerRequestLogic.LoadContactsBtn();
@@ -48,11 +58,6 @@ namespace OBO_Tools.Windows.DealerRequest
         private void CopyRtfTextBtn(object sender, EventArgs e)
         {
             DealerRequestLogic.CopyRtfTextBtn();
-        }
-
-        private void BackBtn(object sender, EventArgs e)
-        {
-            DealerRequestLogic.BackBtn();
         }
     }
 }

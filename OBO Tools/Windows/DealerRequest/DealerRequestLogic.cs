@@ -16,6 +16,17 @@ namespace OBO_Tools.Windows.DealerRequest
             user.dealerRequestWindow.Show();
         }
 
+        public static void ClosedForm()
+        {
+            Application.Exit();
+        }
+
+        public static void BackBtn()
+        {
+            user.dealerRequestWindow.Hide();
+            user.mainWindow.ShowWindow();
+        }
+
         public static void LoadContactsBtn()
         {
             if (Methods.checkFile(user.pathToContacts))
@@ -81,12 +92,6 @@ namespace OBO_Tools.Windows.DealerRequest
         public static void ChangeCodeOfPointBtn()
         {
             CreateRequest.codeOfPointSTR = user.dealerRequestWindow.fxCodeOfPoint.Text;
-        }
-
-        public static void BackBtn()
-        {
-            user.dealerRequestWindow.Hide();
-            user.mainWindow.ShowWindow();
         }
     }
 }
