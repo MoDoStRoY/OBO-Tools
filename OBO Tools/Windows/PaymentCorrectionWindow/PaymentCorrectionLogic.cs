@@ -68,10 +68,26 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             if (window.BCVariantCLB.CheckedItems[0].ToString().Equals("Звонок"))
             {
                 decision += "Информация предоставлена.\n\n" + "Способ ОС: звонком на номер " + window.contact.Text;
+
+                if (window.reparationCB.Checked)
+                {
+                    decision += "\nКомпенсация: " + (Convert.ToDouble(window.paymentSum.Text) - Convert.ToDouble(window.correctionSum.Text)) +
+                        " руб. на номер " + window.correctNumber.Text;
+                }
             }
             else
             {
-                decision += "Способ ОС: " + window.BCVariantCLB.CheckedItems[0].ToString() + " на номер " + window.contact.Text + "\n\n";
+                decision += "Способ ОС: " + window.BCVariantCLB.CheckedItems[0].ToString() + " на номер " + window.contact.Text;
+
+                if (window.reparationCB.Checked)
+                {
+                    decision += "\nКомпенсация: " + (Convert.ToDouble(window.paymentSum.Text) - Convert.ToDouble(window.correctionSum.Text)) +
+                        " руб. на номер " + window.correctNumber.Text + "\n\n";
+                }
+                else
+                {
+                    decision += "\n\n";
+                }
             }
 
             decision += GetAnswer();
@@ -80,27 +96,28 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static string GetAnswer()
         {
-            string answer = "Здравствуйте, меня зовут Фаррухчон, я занимался рассмотрением Вашей заявки " + window.TTNumber.Text + ".";
+            string answer = "Здравствуйте, меня зовут София, я занималась рассмотрением Вашей заявки " + window.TTNumber.Text + ". ";
 
             if (window.fullCorrectionCB.Checked)
             {
-                answer += "Я сделал всё красиво и скорректировал платёж на сумму " + window.paymentSum.Text + "на номер " + 
-                    window.correctNumber.Text + ". Благодарю за обращение!";
+                answer += "Сообщаю, что на номер +" + window.correctNumber.Text + " перенесён ошибочный платёж на сумму " 
+                    + window.paymentSum.Text + " руб. " + "Благодарю за обращение!";
             }
             else
             {
                 if (window.reparationCB.Checked)
                 {
-                    answer += "Я сделал всё красиво, но абонент, получивший Ваш платёж скрысил часть денег. Скорректировано " +
-                        window.correctionSum.Text + ". Но мы беспезды ценим Вас, поэтому компенсировали " + (Convert.ToInt32(window.paymentSum.Text) - 
-                        Convert.ToInt32(window.correctionSum.Text)) + ". Итого на номер " + window.correctNumber.Text +
-                        "перенесено " + window.paymentSum.Text + ". Благодарю за обращение!";
+                    answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
+                        "На номер +" + window.correctNumber.Text + " перенесен остаток денежных средств в сумме " +
+                        window.correctionSum.Text + " руб. с ошибочного номера. Мы ценим Вас, поэтому дополнительно компенсировали " + 
+                        (Convert.ToDouble(window.paymentSum.Text) - Convert.ToDouble(window.correctionSum.Text)) + 
+                        " руб. В итоге, на Ваш номер возвращено " + window.paymentSum.Text + " руб. Благодарю за обращение!";
                 }
                 else
                 {
-                    answer += "Я сделал всё красиво, но абонент, получивший Ваш платёж скрысил часть денег. Скорректировано " +
-                        window.correctionSum.Text + ". Итого на номер " + window.correctNumber.Text +
-                        "перенесено " + window.correctionSum.Text + ". Надеюсь на Ваше понимание и благодарю за обращение!";
+                    answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
+                        "На номер +" + window.correctNumber.Text + " перенесен остаток денежных средств в сумме " +
+                        window.correctionSum.Text + " руб. с ошибочного номера. " + "Надеюсь на Ваше понимание и благодарю за обращение!";
                 }
             }
 
@@ -109,17 +126,46 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static void GetKassaComment()
         {
-            string comment = "Корректировка платежа на сумму " + window.paymentSum.Text + " руб. от " + window.paymentDate.Text + 
-                " с Л/С " + window.incorrectFS.Text + " на Л/С " + window.correctFS.Text + ". Всего скорректировано " +
-                window.correctionSum.Text + " руб. " + window.TTNumber.Text;
+            string comment = "Корректировка платежа на сумму " + window.paymentSum.Text + " руб. от " + window.paymentDate.Text +
+                " с Л/С " + CorrectionFSNumber(window.incorrectFS.Text) + " на Л/С " + CorrectionFSNumber(window.correctFS.Text) + ". Всего скорректировано ";
+
+            if (window.fullCorrectionCB.Checked)
+            {
+                comment += window.paymentSum.Text + " руб. " + window.TTNumber.Text;
+            }
+            else
+            {
+                comment += window.correctionSum.Text + " руб. " + window.TTNumber.Text;
+            }
 
             window.cashComment.Text = comment;
         }
 
+        private static string CorrectionFSNumber(string FSNumber)
+        {
+            char[] buffer = FSNumber.ToCharArray();
+            string result = "";
+
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                if (buffer[i].Equals('0') || buffer[i].Equals('1') || buffer[i].Equals('2') || buffer[i].Equals('3')
+                    || buffer[i].Equals('4') || buffer[i].Equals('5') || buffer[i].Equals('6') || buffer[i].Equals('7')
+                    || buffer[i].Equals('8') || buffer[i].Equals('9'))
+                {
+                    result += buffer[i];
+                }
+            }
+
+            return result;
+        }
+
         private static void GetInvoiceComment()
         {
-            string comment = "OBO Tech. " + window.TTNumber.Text + " " + (Convert.ToInt32(window.paymentSum.Text) -
-                Convert.ToInt32(window.correctionSum.Text));
+            try { Convert.ToDouble(window.correctionSum.Text); }
+            catch { window.correctionSum.Text = "0"; }
+
+            string comment = "OBO Tech. " + window.TTNumber.Text + " " + (Convert.ToDouble(window.paymentSum.Text) -
+                Convert.ToDouble(window.correctionSum.Text));
 
             window.invoiceComment.Text = comment;
         }
