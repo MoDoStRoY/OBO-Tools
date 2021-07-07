@@ -1,4 +1,5 @@
 ﻿using OBO_Tools.Objects;
+using OBO_Tools.Scripts.PaymentCorrection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +9,23 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 {
     class PaymentCorrectionLogic
     {
+
         static User user = Program.user;
         static PaymentCorrectionWindow window = user.paymentCorrectionWindow;
+
+        static string TTNumber;
+        static string contact;
+        //static string BCVariantCLB = window.BCVariantCLB.CheckedItems[0].ToString();
+        static string correctNubmer = window.correctNumber.Text;
+        static string correctFS = window.correctFS.Text;
+        static string incorrectFS = window.incorrectFS.Text;
+        static string paymentSum = window.paymentSum.Text;
+        static string paymentDate = window.paymentDate.Text;
+        static bool fullCorrectionCB = window.fullCorrectionCB.Checked;
+        static bool reparationCB = window.reparationCB.Checked;
+        static string correctionSum = window.correctionSum.Text;
+        //static string sourceTicket = window.sourceTicket.CheckedItems[0].ToString();
+        static bool incorrectTicket = window.incorrectTicket.Checked;
 
         public static void ShowWindow()
         {
@@ -29,9 +45,17 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         public static void GetInfoBtn()
         {
+            NormalizeAll();
+
             GetDecision();
             GetKassaComment();
             GetInvoiceComment();
+        }
+
+        private static void NormalizeAll()
+        {
+            TTNumber = NormalizeStrings.TTNumber(window.TTNumber.Text);
+            contact = NormalizeStrings.Contact(window.contact.Text);
         }
 
         private static void GetDecision()
@@ -67,7 +91,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
             if (window.BCVariantCLB.CheckedItems[0].ToString().Equals("Звонок"))
             {
-                decision += "Информация предоставлена.\n\n" + "Способ ОС: звонком на номер " + window.contact.Text;
+                decision += "Информация предоставлена.\n\n" + "Способ ОС: звонком на номер " + contact;
 
                 if (window.reparationCB.Checked)
                 {
@@ -77,7 +101,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             }
             else
             {
-                decision += "Способ ОС: " + window.BCVariantCLB.CheckedItems[0].ToString() + " на номер " + window.contact.Text;
+                decision += "Способ ОС: " + window.BCVariantCLB.CheckedItems[0].ToString() + " на номер " + contact;
 
                 if (window.reparationCB.Checked)
                 {
@@ -96,7 +120,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static string GetAnswer()
         {
-            string answer = "Здравствуйте, меня зовут София, я занималась рассмотрением Вашей заявки " + window.TTNumber.Text + ". ";
+            string answer = "Здравствуйте, меня зовут София, я занималась рассмотрением Вашей заявки " + TTNumber + ". ";
 
             if (window.fullCorrectionCB.Checked)
             {
@@ -131,11 +155,11 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
             if (window.fullCorrectionCB.Checked)
             {
-                comment += window.paymentSum.Text + " руб. " + window.TTNumber.Text;
+                comment += window.paymentSum.Text + " руб. " + TTNumber;
             }
             else
             {
-                comment += window.correctionSum.Text + " руб. " + window.TTNumber.Text;
+                comment += window.correctionSum.Text + " руб. " + TTNumber;
             }
 
             window.cashComment.Text = comment;
@@ -164,7 +188,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             try { Convert.ToDouble(window.correctionSum.Text); }
             catch { window.correctionSum.Text = "0"; }
 
-            string comment = "OBO Tech. " + window.TTNumber.Text + " " + (Convert.ToDouble(window.paymentSum.Text) -
+            string comment = "OBO Tech. " + TTNumber + " " + (Convert.ToDouble(window.paymentSum.Text) -
                 Convert.ToDouble(window.correctionSum.Text));
 
             window.invoiceComment.Text = comment;
