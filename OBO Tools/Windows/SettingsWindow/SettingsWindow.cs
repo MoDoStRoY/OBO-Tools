@@ -46,6 +46,24 @@ namespace OBO_Tools.Windows.SettingsWindow
             else Program.user.transformFIOToEmailSTG = true;
         }
 
+        private void FubCB(object sender, EventArgs e)
+        {
+            if (Program.user.settingsWindow.fubCB.Checked)
+            {
+                Program.user.mainWindow.DRBtn.Enabled = true;
+            }
+            else
+            {
+                Program.user.mainWindow.DRBtn.Enabled = false;
+            }
+        }
+
+        private void СlosedForm(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            Program.user.settingsWindow.Hide();
+        }
+
         //**//
     }
 }

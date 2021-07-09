@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OBO_Tools.Windows.PaymentCorrectionWindow;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,8 @@ namespace OBO_Tools.Scripts.PaymentCorrection
 {
     class NormalizeStrings
     {
+        static PaymentCorrectionWindow window = Program.user.paymentCorrectionWindow;
+
         public static string TTNumber(string inputString)
         {
             char[] buffer = inputString.Trim().ToCharArray();
@@ -32,8 +35,11 @@ namespace OBO_Tools.Scripts.PaymentCorrection
             else return new string(buffer);
         }
 
-        public static string Contact(string inputString)
+        public static string Number(string inputString)
         {
+            if (String.IsNullOrEmpty(inputString))
+                inputString = "7XXXXXXXXXX";
+
             char[] buffer = inputString.Trim().ToCharArray();
             char[] plusBuffer = new char[buffer.Length+1];
 
@@ -50,9 +56,87 @@ namespace OBO_Tools.Scripts.PaymentCorrection
                 case '9':
                     plusBuffer[0] = '7';
                     return new string(plusBuffer);
+                case '+':
+                    buffer[0] = '7';
+                    break;
             }
 
             return new string(buffer);
         }
+
+        public static string BCVariant()
+        {
+            if (window.BCVariantCLB.CheckedItems.Count == 0)
+            {
+                window.BCVariantCLB.SetItemChecked(4, true);
+            }
+
+            return window.BCVariantCLB.CheckedItems[0].ToString();
+        }
+
+        public static string FSNumber(string inputString)
+        {
+            if (String.IsNullOrEmpty(inputString))
+                inputString = "123456789";
+
+            char[] buffer = inputString.Trim().ToCharArray();
+            string result = "";
+
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                if (buffer[i].Equals('0') || buffer[i].Equals('1') || buffer[i].Equals('2') || buffer[i].Equals('3')
+                    || buffer[i].Equals('4') || buffer[i].Equals('5') || buffer[i].Equals('6') || buffer[i].Equals('7')
+                    || buffer[i].Equals('8') || buffer[i].Equals('9'))
+                {
+                    result += buffer[i];
+                }
+            }
+
+            return result;
+        }
+
+        public static double Sum(string inputString)
+        {
+            if (String.IsNullOrEmpty(inputString))
+                inputString = "0000000";
+
+            if (inputString.Contains('.'))
+                inputString = inputString.Replace('.', ',');
+
+            char[] buffer = inputString.ToCharArray();
+            string result = "";
+
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                if (buffer[i].Equals('0') || buffer[i].Equals('1') || buffer[i].Equals('2') || buffer[i].Equals('3')
+                    || buffer[i].Equals('4') || buffer[i].Equals('5') || buffer[i].Equals('6') || buffer[i].Equals('7')
+                    || buffer[i].Equals('8') || buffer[i].Equals('9') || buffer[i].Equals(','))
+                {
+                    result += buffer[i];
+                }
+            }
+
+            return Convert.ToDouble(result);
+        }
+
+        public static string Date(string inputString)
+        {
+            if (String.IsNullOrEmpty(inputString))
+                inputString = "XX.XX.XXXX";
+
+            return inputString;
+        }
+
+        public static string SourceTicket()
+        {
+            if (window.sourceTicket.CheckedItems.Count == 0)
+            {
+                window.sourceTicket.SetItemChecked(0, true);
+            }
+
+            return window.sourceTicket.CheckedItems[0].ToString();
+        }
+
+
     }
 }

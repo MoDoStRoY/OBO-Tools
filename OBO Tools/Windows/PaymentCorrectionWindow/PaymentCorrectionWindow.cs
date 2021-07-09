@@ -69,5 +69,20 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         {
             PaymentCorrectionLogic.ReparationCB();
         }
+
+        private void CopyAllBtn(object sender, EventArgs e)
+        {
+            PaymentCorrectionLogic.CopyAllBtn();
+        }
+
+        private void GetImportBtn(object sender, EventArgs e)
+        {
+            PaymentCorrectionLogic.GetImportBtn();
+        }
+
+        private void RefusedCorrectionCB(object sender, EventArgs e)
+        {
+            PaymentCorrectionLogic.RefusedCorrectionCB();
+        }
     }
 }

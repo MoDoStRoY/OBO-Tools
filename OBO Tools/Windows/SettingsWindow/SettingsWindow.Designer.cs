@@ -31,7 +31,7 @@ namespace OBO_Tools.Windows.SettingsWindow
         {
             this.fxTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.fubCB = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -59,7 +59,7 @@ namespace OBO_Tools.Windows.SettingsWindow
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkBox2);
+            this.tabPage1.Controls.Add(this.fubCB);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 5);
             this.tabPage1.Name = "tabPage1";
@@ -69,15 +69,16 @@ namespace OBO_Tools.Windows.SettingsWindow
             this.tabPage1.Text = "Запросы по дилерам";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // fubCB
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(4, 35);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(169, 24);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Тестовая настройка";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.fubCB.AutoSize = true;
+            this.fubCB.Location = new System.Drawing.Point(4, 35);
+            this.fubCB.Name = "fubCB";
+            this.fubCB.Size = new System.Drawing.Size(177, 24);
+            this.fubCB.TabIndex = 1;
+            this.fubCB.Text = "Режим отладки (FUB)";
+            this.fubCB.UseVisualStyleBackColor = true;
+            this.fubCB.CheckedChanged += new System.EventHandler(this.FubCB);
             // 
             // checkBox1
             // 
@@ -151,7 +152,7 @@ namespace OBO_Tools.Windows.SettingsWindow
             this.Controls.Add(this.fxTabControl);
             this.Name = "SettingsWindow";
             this.Text = "OBO Tools";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closedForm);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.СlosedForm);
             this.Load += new System.EventHandler(this.initializeForm);
             this.fxTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -167,12 +168,12 @@ namespace OBO_Tools.Windows.SettingsWindow
 
         private System.Windows.Forms.TabControl fxTabControl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.CheckBox fubCB;
     }
 }

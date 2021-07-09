@@ -18,6 +18,7 @@ namespace OBO_Tools.Windows.DealerRequest
 
         public static void ClosedForm()
         {
+            user.settingsWindow.Dispose();
             Application.Exit();
         }
 

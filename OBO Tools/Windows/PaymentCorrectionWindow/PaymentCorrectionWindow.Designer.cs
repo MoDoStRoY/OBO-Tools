@@ -74,6 +74,10 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.incorrectTicket = new System.Windows.Forms.CheckBox();
             this.dataImport = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.refusedCorrectionCB = new System.Windows.Forms.CheckBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -252,7 +256,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(247, 502);
+            this.button3.Location = new System.Drawing.Point(247, 468);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(987, 29);
             this.button3.TabIndex = 64;
@@ -263,7 +267,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(247, 424);
+            this.label14.Location = new System.Drawing.Point(247, 390);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(74, 20);
             this.label14.TabIndex = 63;
@@ -271,7 +275,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // decision
             // 
-            this.decision.Location = new System.Drawing.Point(247, 447);
+            this.decision.Location = new System.Drawing.Point(247, 413);
             this.decision.Name = "decision";
             this.decision.Size = new System.Drawing.Size(987, 49);
             this.decision.TabIndex = 62;
@@ -279,7 +283,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(247, 612);
+            this.button4.Location = new System.Drawing.Point(247, 578);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(987, 29);
             this.button4.TabIndex = 67;
@@ -290,7 +294,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(247, 534);
+            this.label15.Location = new System.Drawing.Point(247, 500);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(182, 20);
             this.label15.TabIndex = 66;
@@ -298,7 +302,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // cashComment
             // 
-            this.cashComment.Location = new System.Drawing.Point(247, 557);
+            this.cashComment.Location = new System.Drawing.Point(247, 523);
             this.cashComment.Name = "cashComment";
             this.cashComment.Size = new System.Drawing.Size(987, 49);
             this.cashComment.TabIndex = 65;
@@ -306,7 +310,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(247, 722);
+            this.button2.Location = new System.Drawing.Point(247, 688);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(987, 29);
             this.button2.TabIndex = 70;
@@ -317,7 +321,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(247, 644);
+            this.label13.Location = new System.Drawing.Point(247, 610);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(301, 20);
             this.label13.TabIndex = 69;
@@ -325,7 +329,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // invoiceComment
             // 
-            this.invoiceComment.Location = new System.Drawing.Point(247, 667);
+            this.invoiceComment.Location = new System.Drawing.Point(247, 633);
             this.invoiceComment.Name = "invoiceComment";
             this.invoiceComment.Size = new System.Drawing.Size(987, 49);
             this.invoiceComment.TabIndex = 68;
@@ -335,9 +339,9 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             this.button5.Location = new System.Drawing.Point(247, 349);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(987, 72);
+            this.button5.Size = new System.Drawing.Size(987, 38);
             this.button5.TabIndex = 71;
-            this.button5.Text = "Сделать заебись!";
+            this.button5.Text = "Сформировать шаблоны";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.GetInfoBtn);
             // 
@@ -465,26 +469,70 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // dataImport
             // 
-            this.dataImport.Location = new System.Drawing.Point(13, 376);
+            this.dataImport.Location = new System.Drawing.Point(13, 413);
             this.dataImport.Name = "dataImport";
-            this.dataImport.Size = new System.Drawing.Size(228, 375);
+            this.dataImport.Size = new System.Drawing.Size(228, 304);
             this.dataImport.TabIndex = 88;
             this.dataImport.Text = "";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(13, 349);
+            this.label19.Location = new System.Drawing.Point(13, 390);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(123, 20);
             this.label19.TabIndex = 89;
             this.label19.Text = "Импорт данных:";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(247, 723);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(987, 29);
+            this.button8.TabIndex = 90;
+            this.button8.Text = "Скопировать всё";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.CopyAllBtn);
+            // 
+            // refusedCorrectionCB
+            // 
+            this.refusedCorrectionCB.AutoSize = true;
+            this.refusedCorrectionCB.Location = new System.Drawing.Point(14, 346);
+            this.refusedCorrectionCB.Name = "refusedCorrectionCB";
+            this.refusedCorrectionCB.Size = new System.Drawing.Size(49, 24);
+            this.refusedCorrectionCB.TabIndex = 92;
+            this.refusedCorrectionCB.Text = "Да";
+            this.refusedCorrectionCB.UseVisualStyleBackColor = true;
+            this.refusedCorrectionCB.CheckedChanged += new System.EventHandler(this.RefusedCorrectionCB);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 323);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(197, 20);
+            this.label22.TabIndex = 91;
+            this.label22.Text = "В корректировке отказано:";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(14, 723);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(226, 29);
+            this.button9.TabIndex = 93;
+            this.button9.Text = "Подгрузить в чек-лист";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.GetImportBtn);
             // 
             // PaymentCorrectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 763);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.refusedCorrectionCB);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.dataImport);
             this.Controls.Add(this.incorrectTicket);
@@ -585,5 +633,10 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         public System.Windows.Forms.CheckBox incorrectTicket;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.RichTextBox dataImport;
+        private System.Windows.Forms.Button button8;
+        public System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button9;
+        public System.Windows.Forms.CheckBox refusedCorrectionCB;
     }
 }

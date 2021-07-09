@@ -30,7 +30,7 @@ namespace OBO_Tools
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.button3 = new System.Windows.Forms.Button();
+            this.DRBtn = new System.Windows.Forms.Button();
             this.fxGroupName1 = new System.Windows.Forms.Label();
             this.fxVersion = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -41,15 +41,16 @@ namespace OBO_Tools
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button3
+            // DRBtn
             // 
-            this.button3.Location = new System.Drawing.Point(13, 126);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(196, 29);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Запросы по дилерам";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.DealerRequestBtn);
+            this.DRBtn.Enabled = false;
+            this.DRBtn.Location = new System.Drawing.Point(13, 126);
+            this.DRBtn.Name = "DRBtn";
+            this.DRBtn.Size = new System.Drawing.Size(196, 29);
+            this.DRBtn.TabIndex = 2;
+            this.DRBtn.Text = "Запросы по дилерам";
+            this.DRBtn.UseVisualStyleBackColor = true;
+            this.DRBtn.Click += new System.EventHandler(this.DealerRequestBtn);
             // 
             // fxGroupName1
             // 
@@ -139,7 +140,7 @@ namespace OBO_Tools
             this.Controls.Add(this.button5);
             this.Controls.Add(this.fxVersion);
             this.Controls.Add(this.fxGroupName1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.DRBtn);
             this.Name = "MainWindow";
             this.Text = "OBO Tools";
             this.Load += new System.EventHandler(this.InitializeForm);
@@ -149,7 +150,7 @@ namespace OBO_Tools
         }
 
         #endregion
-        public System.Windows.Forms.Button button3;
+        public System.Windows.Forms.Button DRBtn;
         public System.Windows.Forms.Label fxGroupName1;
         public System.Windows.Forms.Label fxVersion;
         public System.Windows.Forms.Button button5;

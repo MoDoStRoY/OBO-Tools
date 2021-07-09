@@ -15,17 +15,14 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         static string TTNumber;
         static string contact;
-        //static string BCVariantCLB = window.BCVariantCLB.CheckedItems[0].ToString();
-        static string correctNubmer = window.correctNumber.Text;
-        static string correctFS = window.correctFS.Text;
-        static string incorrectFS = window.incorrectFS.Text;
-        static string paymentSum = window.paymentSum.Text;
-        static string paymentDate = window.paymentDate.Text;
-        static bool fullCorrectionCB = window.fullCorrectionCB.Checked;
-        static bool reparationCB = window.reparationCB.Checked;
-        static string correctionSum = window.correctionSum.Text;
-        //static string sourceTicket = window.sourceTicket.CheckedItems[0].ToString();
-        static bool incorrectTicket = window.incorrectTicket.Checked;
+        static string BCVariantCLB;
+        static string correctNumber;
+        static string correctFS;
+        static string incorrectFS;
+        static double paymentSum;
+        static string paymentDate;
+        static double correctionSum;
+        static string sourceTicket;
 
         public static void ShowWindow()
         {
@@ -34,6 +31,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         public static void ClosedForm()
         {
+            user.settingsWindow.Dispose();
             Application.Exit();
         }
 
@@ -45,8 +43,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         public static void GetInfoBtn()
         {
-            GetImport();
-
             NormalizeAll();
 
             GetDecision();
@@ -54,48 +50,67 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             GetInvoiceComment();
         }
 
-        private static void GetImport()
+        public static void GetImportBtn()
         { 
             if (!string.IsNullOrEmpty(window.dataImport.Text))
             {
-                string[] buffer = window.dataImport.Text.Split("\n");
+                try
+                {
+                    string[] buffer = window.dataImport.Text.Split("\n");
 
-                window.TTNumber.Text = buffer[0];
-                window.contact.Text = buffer[1];
-                window.correctNumber.Text = buffer[2];
-                window.correctFS.Text = buffer[3];
-                window.incorrectFS.Text = buffer[4];
-                window.paymentSum.Text = buffer[5];
-                window.paymentDate.Text = buffer[6];
+                    window.TTNumber.Text = buffer[0];
+                    window.contact.Text = buffer[1];
+                    window.correctNumber.Text = buffer[2];
+                    window.correctFS.Text = buffer[3];
+                    window.incorrectFS.Text = buffer[4];
+                    window.paymentSum.Text = buffer[5];
+                    window.paymentDate.Text = buffer[6];
+                }
+                catch {}
             }
         }
 
         private static void NormalizeAll()
         {
             TTNumber = NormalizeStrings.TTNumber(window.TTNumber.Text);
-            contact = NormalizeStrings.Contact(window.contact.Text);
+            contact = NormalizeStrings.Number(window.contact.Text);
+            BCVariantCLB = NormalizeStrings.BCVariant();
+            correctNumber = NormalizeStrings.Number(window.correctNumber.Text);
+            correctFS = NormalizeStrings.FSNumber(window.correctFS.Text);
+            incorrectFS = NormalizeStrings.FSNumber(window.incorrectFS.Text);
+            paymentSum = NormalizeStrings.Sum(window.paymentSum.Text);
+            paymentDate = NormalizeStrings.Date(window.paymentDate.Text);
+            correctionSum = NormalizeStrings.Sum(window.correctionSum.Text);
+            sourceTicket = NormalizeStrings.SourceTicket();
         }
 
         private static void GetDecision()
         {
             string decision = "OBO Tech: ";
 
-            if (window.fullCorrectionCB.Checked)
+            if (window.refusedCorrectionCB.Checked)
             {
-                decision += "Платёж скорректирован в полном объёме - " + window.paymentSum.Text + 
-                    " руб. \n\n===============================\n\n";
+                decision += "В корректировке отказано - ХХХХХХХХХХХХХХ" + "\n\n" + "===============================\n\n";
             }
             else
             {
-                decision += "Платёж скорректирован частично - " + window.correctionSum.Text + 
-                    " руб. \n\n===============================\n\n";
+                if (window.fullCorrectionCB.Checked)
+                {
+                    decision += "Платёж скорректирован в полном объёме - " + paymentSum +
+                        " руб. \n\n===============================\n\n";
+                }
+                else
+                {
+                    decision += "Платёж скорректирован частично - " + correctionSum +
+                        " руб. \n\n===============================\n\n";
+                }
             }
 
             if (window.incorrectTicket.Checked)
             {
                 decision += "Решение на первой линии:\n";
 
-                if (window.sourceTicket.GetItemChecked(0))
+                if (sourceTicket.Equals("CRM"))
                 {
                     decision += "https://kms.tele2.ru/kms/CM/SCENARIO/VIEW?item_id=22955";
                 }
@@ -107,24 +122,24 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                 decision += "\n\nПричинаОшибки\n\n";
             }
 
-            if (window.BCVariantCLB.CheckedItems[0].ToString().Equals("Звонок"))
+            if (BCVariantCLB.Equals("Звонок"))
             {
                 decision += "Информация предоставлена.\n\n" + "Способ ОС: звонком на номер " + contact;
 
                 if (window.reparationCB.Checked)
                 {
-                    decision += "\nКомпенсация: " + (Convert.ToDouble(window.paymentSum.Text) - Convert.ToDouble(window.correctionSum.Text)) +
-                        " руб. на номер " + window.correctNumber.Text;
+                    decision += "\nКомпенсация: " + (paymentSum - correctionSum) +
+                        " руб. на номер " + correctNumber;
                 }
             }
             else
             {
-                decision += "Способ ОС: " + window.BCVariantCLB.CheckedItems[0].ToString() + " на номер " + contact;
+                decision += "Способ ОС: " + BCVariantCLB + " на номер " + contact;
 
                 if (window.reparationCB.Checked)
                 {
-                    decision += "\nКомпенсация: " + (Convert.ToDouble(window.paymentSum.Text) - Convert.ToDouble(window.correctionSum.Text)) +
-                        " руб. на номер " + window.correctNumber.Text + "\n\n";
+                    decision += "\nКомпенсация: " + (paymentSum - correctionSum) +
+                        " руб. на номер " + correctNumber + "\n\n";
                 }
                 else
                 {
@@ -140,26 +155,34 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         {
             string answer = "Здравствуйте, меня зовут София, я занималась рассмотрением Вашей заявки " + TTNumber + ". ";
 
-            if (window.fullCorrectionCB.Checked)
+            if (window.refusedCorrectionCB.Checked)
             {
-                answer += "Сообщаю, что на номер +" + window.correctNumber.Text + " перенесён ошибочный платёж на сумму " 
-                    + window.paymentSum.Text + " руб. " + "Благодарю за обращение!";
+                answer += "К сожалению, выполнить корректировку данного платежа на текущий момент невозможно, т.к. ХХХХХХХХХХХХХХ. " +
+                    "Приносим извинения за доставленные неудобства. Надеюсь на Ваше понимание и благодарю за обращение!";
             }
             else
             {
-                if (window.reparationCB.Checked)
+                if (window.fullCorrectionCB.Checked)
                 {
-                    answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
-                        "На номер +" + window.correctNumber.Text + " перенесен остаток денежных средств в сумме " +
-                        window.correctionSum.Text + " руб. с ошибочного номера. Мы ценим Вас, поэтому дополнительно компенсировали " + 
-                        (Convert.ToDouble(window.paymentSum.Text) - Convert.ToDouble(window.correctionSum.Text)) + 
-                        " руб. В итоге, на Ваш номер возвращено " + window.paymentSum.Text + " руб. Благодарю за обращение!";
+                    answer += "Сообщаю, что на номер +" + correctNumber + " перенесён ошибочный платёж на сумму "
+                        + paymentSum + " руб. " + "Благодарю за обращение!";
                 }
                 else
                 {
-                    answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
-                        "На номер +" + window.correctNumber.Text + " перенесен остаток денежных средств в сумме " +
-                        window.correctionSum.Text + " руб. с ошибочного номера. " + "Надеюсь на Ваше понимание и благодарю за обращение!";
+                    if (window.reparationCB.Checked)
+                    {
+                        answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
+                            "На номер +" + correctNumber + " перенесен остаток денежных средств в сумме " +
+                            window.correctionSum.Text + " руб. с ошибочного номера. Мы ценим Вас, поэтому дополнительно компенсировали " +
+                            (paymentSum - correctionSum) +
+                            " руб. В итоге, на Ваш номер возвращено " + paymentSum + " руб. Благодарю за обращение!";
+                    }
+                    else
+                    {
+                        answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
+                            "На номер +" + correctNumber + " перенесен остаток денежных средств в сумме " +
+                            window.correctionSum.Text + " руб. с ошибочного номера. " + "Надеюсь на Ваше понимание и благодарю за обращение!";
+                    }
                 }
             }
 
@@ -168,37 +191,19 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static void GetKassaComment()
         {
-            string comment = "Корректировка платежа на сумму " + window.paymentSum.Text + " руб. от " + window.paymentDate.Text +
-                " с Л/С " + CorrectionFSNumber(window.incorrectFS.Text) + " на Л/С " + CorrectionFSNumber(window.correctFS.Text) + ". Всего скорректировано ";
+            string comment = "Корректировка платежа на сумму " + paymentSum + " руб. от " + paymentDate +
+                " с Л/С " + incorrectFS + " на Л/С " + correctFS + ". Всего скорректировано ";
 
             if (window.fullCorrectionCB.Checked)
             {
-                comment += window.paymentSum.Text + " руб. " + TTNumber;
+                comment += paymentSum + " руб. " + TTNumber;
             }
             else
             {
-                comment += window.correctionSum.Text + " руб. " + TTNumber;
+                comment += correctionSum + " руб. " + TTNumber;
             }
 
             window.cashComment.Text = comment;
-        }
-
-        private static string CorrectionFSNumber(string FSNumber)
-        {
-            char[] buffer = FSNumber.ToCharArray();
-            string result = "";
-
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                if (buffer[i].Equals('0') || buffer[i].Equals('1') || buffer[i].Equals('2') || buffer[i].Equals('3')
-                    || buffer[i].Equals('4') || buffer[i].Equals('5') || buffer[i].Equals('6') || buffer[i].Equals('7')
-                    || buffer[i].Equals('8') || buffer[i].Equals('9'))
-                {
-                    result += buffer[i];
-                }
-            }
-
-            return result;
         }
 
         private static void GetInvoiceComment()
@@ -206,8 +211,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             try { Convert.ToDouble(window.correctionSum.Text); }
             catch { window.correctionSum.Text = "0"; }
 
-            string comment = "OBO Tech. " + TTNumber + " " + (Convert.ToDouble(window.paymentSum.Text) -
-                Convert.ToDouble(window.correctionSum.Text));
+            string comment = "OBO Tech. " + TTNumber + " " + (paymentSum - correctionSum);
 
             window.invoiceComment.Text = comment;
         }
@@ -230,6 +234,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             window.incorrectTicket.Checked = false;
             window.sourceTicket.ClearSelected();
             window.dataImport.Text = "";
+            window.correctionSum.Text = "";
         }
 
         public static void ClearAllWithoutDateBtn()
@@ -282,6 +287,38 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             else
             {
                 window.fullCorrectionCB.Enabled = true;
+            }
+        }
+
+        public static void CopyAllBtn()
+        {
+            Clipboard.SetData(DataFormats.Text, (Object)window.cashComment.Text + "\n\n" + window.invoiceComment.Text 
+                + "\n\n" + window.decision.Text);
+        }
+
+        public static void RefusedCorrectionCB()
+        {
+            if (window.refusedCorrectionCB.Checked)
+            {
+                window.correctNumber.Enabled = false;
+                window.correctFS.Enabled = false;
+                window.incorrectFS.Enabled = false;
+                window.paymentSum.Enabled = false;
+                window.paymentDate.Enabled = false;
+                window.fullCorrectionCB.Enabled = false;
+                window.reparationCB.Enabled = false;
+                window.correctionSum.Enabled = false;
+            }
+            else
+            {
+                window.correctNumber.Enabled = true;
+                window.correctFS.Enabled = true;
+                window.incorrectFS.Enabled = true;
+                window.paymentSum.Enabled = true;
+                window.paymentDate.Enabled = true;
+                window.fullCorrectionCB.Enabled = true;
+                window.reparationCB.Enabled = true;
+                window.correctionSum.Enabled = true;
             }
         }
     }
