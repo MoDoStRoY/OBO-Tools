@@ -145,9 +145,9 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                 {
                     decision += "\n\n";
                 }
-            }
 
-            decision += GetAnswer();
+                decision += GetAnswer();
+            }
             window.decision.Text = decision;
         }
 
