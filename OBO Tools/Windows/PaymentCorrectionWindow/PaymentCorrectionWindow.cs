@@ -59,5 +59,15 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         {
             PaymentCorrectionLogic.CopyInvoiceCommentBtn();
         }
+
+        private void FullCorrectionCB(object sender, EventArgs e)
+        {
+            PaymentCorrectionLogic.FullCorrectionCB();
+        }
+
+        private void ReparationCB(object sender, EventArgs e)
+        {
+            PaymentCorrectionLogic.ReparationCB();
+        }
     }
 }

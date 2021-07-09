@@ -45,11 +45,29 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         public static void GetInfoBtn()
         {
+            GetImport();
+
             NormalizeAll();
 
             GetDecision();
             GetKassaComment();
             GetInvoiceComment();
+        }
+
+        private static void GetImport()
+        { 
+            if (!string.IsNullOrEmpty(window.dataImport.Text))
+            {
+                string[] buffer = window.dataImport.Text.Split("\n");
+
+                window.TTNumber.Text = buffer[0];
+                window.contact.Text = buffer[1];
+                window.correctNumber.Text = buffer[2];
+                window.correctFS.Text = buffer[3];
+                window.incorrectFS.Text = buffer[4];
+                window.paymentSum.Text = buffer[5];
+                window.paymentDate.Text = buffer[6];
+            }
         }
 
         private static void NormalizeAll()
@@ -211,6 +229,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             window.invoiceComment.Text = "";
             window.incorrectTicket.Checked = false;
             window.sourceTicket.ClearSelected();
+            window.dataImport.Text = "";
         }
 
         public static void ClearAllWithoutDateBtn()
@@ -235,6 +254,35 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         public static void CopyInvoiceCommentBtn()
         {
             Clipboard.SetData(DataFormats.Text, (Object)window.invoiceComment.Text);
+        }
+
+        public static void FullCorrectionCB()
+        {
+            if (window.fullCorrectionCB.Checked)
+            {
+                window.reparationCB.Checked = false;
+                window.reparationCB.Enabled = false;
+                window.correctionSum.Text = "";
+                window.correctionSum.Enabled = false;
+            }
+            else
+            {
+                window.reparationCB.Enabled = true;
+                window.correctionSum.Enabled = true;
+            }
+        }
+
+        public static void ReparationCB()
+        {
+            if (window.reparationCB.Checked)
+            {
+                window.fullCorrectionCB.Checked = false;
+                window.fullCorrectionCB.Enabled = false;
+            }
+            else
+            {
+                window.fullCorrectionCB.Enabled = true;
+            }
         }
     }
 }
