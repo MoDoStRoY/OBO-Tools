@@ -50,6 +50,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.button9.TabIndex = 35;
             this.button9.Text = "Копировать текст";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.CopyRtfTextBtn);
             // 
             // fxCodeOfPointBtn
             // 
@@ -60,6 +61,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.fxCodeOfPointBtn.Text = "Изменить код точки";
             this.fxCodeOfPointBtn.UseVisualStyleBackColor = true;
             this.fxCodeOfPointBtn.Visible = false;
+            this.fxCodeOfPointBtn.Click += new System.EventHandler(this.ChangeCodeOfPointBtn);
             // 
             // fxCodeOfPoint
             // 
@@ -78,6 +80,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.needAnswerCheckbox.TabIndex = 32;
             this.needAnswerCheckbox.Text = "Требуется ответ на запрос";
             this.needAnswerCheckbox.UseVisualStyleBackColor = true;
+            this.needAnswerCheckbox.CheckedChanged += new System.EventHandler(this.NeedAnswerBtn);
             // 
             // button7
             // 
@@ -87,6 +90,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.button7.TabIndex = 31;
             this.button7.Text = "Сформировать запрос";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.GetRequestBtn);
             // 
             // fxRequestArea
             // 
@@ -122,6 +126,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.button6.TabIndex = 27;
             this.button6.Text = "Загрузить чек-лист ТТ";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.LoadCheckListBtn);
             // 
             // button8
             // 
@@ -131,6 +136,7 @@ namespace OBO_Tools.Windows.DealerRequest
             this.button8.TabIndex = 26;
             this.button8.Text = "Загрузить контакты ТМ";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.LoadContactsBtn);
             // 
             // button1
             // 

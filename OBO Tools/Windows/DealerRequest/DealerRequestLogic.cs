@@ -80,7 +80,7 @@ namespace OBO_Tools.Windows.DealerRequest
 
         public static void CopyRtfTextBtn()
         {
-            Clipboard.SetText(user.dealerRequestWindow.fxRequestArea.Rtf, TextDataFormat.Rtf);
+            Clipboard.SetData(DataFormats.Text, (Object)user.dealerRequestWindow.fxRequestArea.Text);
         }
 
         public static void NeedAnswerBtn()
