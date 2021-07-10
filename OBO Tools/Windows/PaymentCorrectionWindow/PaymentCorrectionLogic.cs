@@ -173,7 +173,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                     {
                         answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
                             "На номер +" + correctNumber + " перенесен остаток денежных средств в сумме " +
-                            window.correctionSum.Text + " руб. с ошибочного номера. Мы ценим Вас, поэтому дополнительно компенсировали " +
+                            correctionSum + " руб. с ошибочного номера. Мы ценим Вас, поэтому дополнительно компенсировали " +
                             (paymentSum - correctionSum) +
                             " руб. В итоге, на Ваш номер возвращено " + paymentSum + " руб. Благодарю за обращение!";
                     }
@@ -181,7 +181,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                     {
                         answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
                             "На номер +" + correctNumber + " перенесен остаток денежных средств в сумме " +
-                            window.correctionSum.Text + " руб. с ошибочного номера. " + "Надеюсь на Ваше понимание и благодарю за обращение!";
+                            correctionSum + " руб. с ошибочного номера. " + "Надеюсь на Ваше понимание и благодарю за обращение!";
                     }
                 }
             }
@@ -208,9 +208,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static void GetInvoiceComment()
         {
-            try { Convert.ToDouble(window.correctionSum.Text); }
-            catch { window.correctionSum.Text = "0"; }
-
             string comment = "OBO Tech. " + TTNumber + " " + (paymentSum - correctionSum);
 
             window.invoiceComment.Text = comment;
