@@ -61,8 +61,8 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                     window.TTNumber.Text = buffer[0];
                     window.contact.Text = buffer[1];
                     window.correctNumber.Text = buffer[2];
-                    window.correctFS.Text = buffer[3];
-                    window.incorrectFS.Text = buffer[4];
+                    window.incorrectFS.Text = buffer[3];
+                    window.correctFS.Text = buffer[4];
                     window.paymentSum.Text = buffer[5];
                     window.paymentDate.Text = buffer[6];
                 }
