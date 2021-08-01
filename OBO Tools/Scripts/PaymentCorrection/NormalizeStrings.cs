@@ -40,6 +40,8 @@ namespace OBO_Tools.Scripts.PaymentCorrection
             if (String.IsNullOrEmpty(inputString))
                 inputString = "7XXXXXXXXXX";
 
+            inputString = FSNumber(inputString);
+
             char[] buffer = inputString.Trim().ToCharArray();
             char[] plusBuffer = new char[buffer.Length+1];
 

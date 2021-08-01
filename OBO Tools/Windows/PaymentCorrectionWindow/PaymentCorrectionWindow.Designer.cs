@@ -40,9 +40,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label5 = new System.Windows.Forms.Label();
             this.correctNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.correctFS = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.incorrectFS = new System.Windows.Forms.TextBox();
+            this.incorrectNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.paymentSum = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -165,7 +163,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // correctNumber
             // 
-            this.correctNumber.Location = new System.Drawing.Point(496, 91);
+            this.correctNumber.Location = new System.Drawing.Point(496, 150);
             this.correctNumber.Name = "correctNumber";
             this.correctNumber.Size = new System.Drawing.Size(191, 27);
             this.correctNumber.TabIndex = 47;
@@ -173,47 +171,31 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(496, 67);
+            this.label6.Location = new System.Drawing.Point(496, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(218, 20);
             this.label6.TabIndex = 46;
             this.label6.Text = "Корректный номер телефона:";
             // 
-            // correctFS
+            // incorrectNumber
             // 
-            this.correctFS.Location = new System.Drawing.Point(496, 196);
-            this.correctFS.Name = "correctFS";
-            this.correctFS.Size = new System.Drawing.Size(191, 27);
-            this.correctFS.TabIndex = 49;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(496, 175);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(187, 20);
-            this.label7.TabIndex = 48;
-            this.label7.Text = "Л/С корректного номера:";
-            // 
-            // incorrectFS
-            // 
-            this.incorrectFS.Location = new System.Drawing.Point(496, 145);
-            this.incorrectFS.Name = "incorrectFS";
-            this.incorrectFS.Size = new System.Drawing.Size(191, 27);
-            this.incorrectFS.TabIndex = 51;
+            this.incorrectNumber.Location = new System.Drawing.Point(496, 91);
+            this.incorrectNumber.Name = "incorrectNumber";
+            this.incorrectNumber.Size = new System.Drawing.Size(191, 27);
+            this.incorrectNumber.TabIndex = 51;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(496, 121);
+            this.label8.Location = new System.Drawing.Point(496, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(188, 20);
+            this.label8.Size = new System.Drawing.Size(219, 20);
             this.label8.TabIndex = 50;
-            this.label8.Text = "Л/С ошибочного номера:";
+            this.label8.Text = "Ошибочный номер телефона:";
             // 
             // paymentSum
             // 
-            this.paymentSum.Location = new System.Drawing.Point(496, 253);
+            this.paymentSum.Location = new System.Drawing.Point(496, 216);
             this.paymentSum.Name = "paymentSum";
             this.paymentSum.Size = new System.Drawing.Size(191, 27);
             this.paymentSum.TabIndex = 53;
@@ -221,7 +203,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(496, 229);
+            this.label9.Location = new System.Drawing.Point(496, 192);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(120, 20);
             this.label9.TabIndex = 52;
@@ -363,7 +345,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // paymentDate
             // 
-            this.paymentDate.Location = new System.Drawing.Point(496, 316);
+            this.paymentDate.Location = new System.Drawing.Point(496, 279);
             this.paymentDate.Name = "paymentDate";
             this.paymentDate.Size = new System.Drawing.Size(191, 27);
             this.paymentDate.TabIndex = 75;
@@ -371,7 +353,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(496, 292);
+            this.label17.Location = new System.Drawing.Point(496, 255);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(106, 20);
             this.label17.TabIndex = 74;
@@ -563,10 +545,8 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.Controls.Add(this.label10);
             this.Controls.Add(this.paymentSum);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.incorrectFS);
+            this.Controls.Add(this.incorrectNumber);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.correctFS);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.correctNumber);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -599,9 +579,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox correctNumber;
         private System.Windows.Forms.Label label6;
-        public System.Windows.Forms.TextBox correctFS;
-        private System.Windows.Forms.Label label7;
-        public System.Windows.Forms.TextBox incorrectFS;
+        public System.Windows.Forms.TextBox incorrectNumber;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox paymentSum;
         private System.Windows.Forms.Label label9;

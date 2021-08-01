@@ -18,7 +18,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         static string BCVariantCLB;
         static string correctNumber;
         static string correctFS;
-        static string incorrectFS;
+        static string incorrectNumber;
         static double paymentSum;
         static string paymentDate;
         static double correctionSum;
@@ -60,11 +60,10 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
                     window.TTNumber.Text = buffer[0];
                     window.contact.Text = buffer[1];
-                    window.correctNumber.Text = buffer[2];
-                    window.incorrectFS.Text = buffer[3];
-                    window.correctFS.Text = buffer[4];
-                    window.paymentSum.Text = buffer[5];
-                    window.paymentDate.Text = buffer[6];
+                    window.incorrectNumber.Text = buffer[2];
+                    window.correctNumber.Text = buffer[3];
+                    window.paymentSum.Text = buffer[4];
+                    window.paymentDate.Text = buffer[5];
                 }
                 catch {}
             }
@@ -76,8 +75,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             contact = NormalizeStrings.Number(window.contact.Text);
             BCVariantCLB = NormalizeStrings.BCVariant();
             correctNumber = NormalizeStrings.Number(window.correctNumber.Text);
-            correctFS = NormalizeStrings.FSNumber(window.correctFS.Text);
-            incorrectFS = NormalizeStrings.FSNumber(window.incorrectFS.Text);
+            incorrectNumber = NormalizeStrings.Number(window.incorrectNumber.Text);
             paymentSum = NormalizeStrings.Sum(window.paymentSum.Text);
             paymentDate = NormalizeStrings.Date(window.paymentDate.Text);
             correctionSum = NormalizeStrings.Sum(window.correctionSum.Text);
@@ -192,7 +190,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         private static void GetKassaComment()
         {
             string comment = "Корректировка платежа на сумму " + paymentSum + " руб. от " + paymentDate +
-                " с Л/С " + incorrectFS + " на Л/С " + correctFS + ". Всего скорректировано ";
+                " с номера " + incorrectNumber + " на номер " + correctNumber + ". Всего скорректировано ";
 
             if (window.fullCorrectionCB.Checked)
             {
@@ -219,8 +217,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             window.contact.Text = "";
             window.BCVariantCLB.ClearSelected();
             window.correctNumber.Text = "";
-            window.correctFS.Text = "";
-            window.incorrectFS.Text = "";
+            window.incorrectNumber.Text = "";
             window.paymentSum.Text = "";
             window.paymentDate.Text = "";
             window.fullCorrectionCB.Checked = false;
@@ -232,6 +229,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             window.sourceTicket.ClearSelected();
             window.dataImport.Text = "";
             window.correctionSum.Text = "";
+            window.refusedCorrectionCB.Checked = false;
         }
 
         public static void ClearAllWithoutDateBtn()
@@ -298,19 +296,19 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             if (window.refusedCorrectionCB.Checked)
             {
                 window.correctNumber.Enabled = false;
-                window.correctFS.Enabled = false;
-                window.incorrectFS.Enabled = false;
+                window.incorrectNumber.Enabled = false;
                 window.paymentSum.Enabled = false;
                 window.paymentDate.Enabled = false;
                 window.fullCorrectionCB.Enabled = false;
                 window.reparationCB.Enabled = false;
                 window.correctionSum.Enabled = false;
+                window.correctionSum.Text = "";
+                window.reparationCB.Checked = false;
             }
             else
             {
                 window.correctNumber.Enabled = true;
-                window.correctFS.Enabled = true;
-                window.incorrectFS.Enabled = true;
+                window.incorrectNumber.Enabled = true;
                 window.paymentSum.Enabled = true;
                 window.paymentDate.Enabled = true;
                 window.fullCorrectionCB.Enabled = true;
