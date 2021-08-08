@@ -51,12 +51,17 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         }
 
         public static void GetImportBtn()
-        { 
-            if (!string.IsNullOrEmpty(window.dataImport.Text))
+        {
+            string bufferedData = "";
+
+            try { bufferedData = (string)Clipboard.GetDataObject().GetData(DataFormats.Text);}
+            catch { }
+
+            if (!string.IsNullOrEmpty((string)Clipboard.GetDataObject().GetData(DataFormats.Text)))
             {
                 try
                 {
-                    string[] buffer = window.dataImport.Text.Split("\n");
+                    string[] buffer = bufferedData.Split("\n");
 
                     window.TTNumber.Text = buffer[0];
                     window.contact.Text = buffer[1];
@@ -67,6 +72,8 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                 }
                 catch {}
             }
+
+            GetInfoBtn();
         }
 
         private static void NormalizeAll()
@@ -172,7 +179,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
                         answer += "Сообщаю, что платеж поступил на ошибочный номер, и абонент израсходовал часть средств. " +
                             "На номер +" + correctNumber + " перенесен остаток денежных средств в сумме " +
                             correctionSum + " руб. с ошибочного номера. Мы ценим Вас, поэтому дополнительно компенсировали " +
-                            (paymentSum - correctionSum) +
+                            NormalizeStrings.Difference(paymentSum, correctionSum) +
                             " руб. В итоге, на Ваш номер возвращено " + paymentSum + " руб. Благодарю за обращение!";
                     }
                     else
@@ -206,7 +213,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static void GetInvoiceComment()
         {
-            string comment = "OBO Tech. " + TTNumber + " " + (paymentSum - correctionSum);
+            string comment = "OBO Tech. " + TTNumber + " " + NormalizeStrings.Difference(paymentSum, correctionSum);
 
             window.invoiceComment.Text = comment;
         }
@@ -227,7 +234,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             window.invoiceComment.Text = "";
             window.incorrectTicket.Checked = false;
             window.sourceTicket.ClearSelected();
-            window.dataImport.Text = "";
             window.correctionSum.Text = "";
             window.refusedCorrectionCB.Checked = false;
         }

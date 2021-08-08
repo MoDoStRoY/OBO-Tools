@@ -70,7 +70,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.fullCorrectionCB = new System.Windows.Forms.CheckBox();
             this.reparationCB = new System.Windows.Forms.CheckBox();
             this.incorrectTicket = new System.Windows.Forms.CheckBox();
-            this.dataImport = new System.Windows.Forms.RichTextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.refusedCorrectionCB = new System.Windows.Forms.CheckBox();
@@ -449,14 +448,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.incorrectTicket.Text = "Да";
             this.incorrectTicket.UseVisualStyleBackColor = true;
             // 
-            // dataImport
-            // 
-            this.dataImport.Location = new System.Drawing.Point(13, 413);
-            this.dataImport.Name = "dataImport";
-            this.dataImport.Size = new System.Drawing.Size(228, 304);
-            this.dataImport.TabIndex = 88;
-            this.dataImport.Text = "";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -498,11 +489,11 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(14, 723);
+            this.button9.Location = new System.Drawing.Point(12, 413);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(226, 29);
             this.button9.TabIndex = 93;
-            this.button9.Text = "Подгрузить в чек-лист";
+            this.button9.Text = "Загрузка из буфера обмена";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.GetImportBtn);
             // 
@@ -516,7 +507,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.Controls.Add(this.label22);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.dataImport);
             this.Controls.Add(this.incorrectTicket);
             this.Controls.Add(this.reparationCB);
             this.Controls.Add(this.fullCorrectionCB);
@@ -610,7 +600,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         public System.Windows.Forms.CheckBox reparationCB;
         public System.Windows.Forms.CheckBox incorrectTicket;
         private System.Windows.Forms.Label label19;
-        public System.Windows.Forms.RichTextBox dataImport;
         private System.Windows.Forms.Button button8;
         public System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label22;

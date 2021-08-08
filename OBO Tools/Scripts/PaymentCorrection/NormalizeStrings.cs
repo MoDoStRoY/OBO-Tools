@@ -139,6 +139,11 @@ namespace OBO_Tools.Scripts.PaymentCorrection
             return window.sourceTicket.CheckedItems[0].ToString();
         }
 
+        public static double Difference(double first, double second)
+        {
+            return Math.Round(first - second, 2, MidpointRounding.ToEven);
+        }
+
 
     }
 }
