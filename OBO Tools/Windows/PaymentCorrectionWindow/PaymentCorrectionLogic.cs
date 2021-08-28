@@ -133,7 +133,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
                 if (window.reparationCB.Checked)
                 {
-                    decision += "\nКомпенсация: " + (paymentSum - correctionSum) +
+                    decision += "\nКомпенсация: " + NormalizeStrings.Difference(paymentSum, correctionSum) +
                         " руб. на номер " + correctNumber;
                 }
             }
@@ -143,7 +143,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
                 if (window.reparationCB.Checked)
                 {
-                    decision += "\nКомпенсация: " + (paymentSum - correctionSum) +
+                    decision += "\nКомпенсация: " + NormalizeStrings.Difference(paymentSum, correctionSum) +
                         " руб. на номер " + correctNumber + "\n\n";
                 }
                 else
@@ -213,7 +213,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
 
         private static void GetInvoiceComment()
         {
-            string comment = "OBO Tech. " + TTNumber + " " + NormalizeStrings.Difference(paymentSum, correctionSum);
+            string comment = "OBO Tech. " + TTNumber + " " + NormalizeStrings.Difference(paymentSum, correctionSum).ToString().Replace(',', '.');
 
             window.invoiceComment.Text = comment;
         }

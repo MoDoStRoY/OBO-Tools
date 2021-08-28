@@ -304,9 +304,9 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(247, 610);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(301, 20);
+            this.label13.Size = new System.Drawing.Size(284, 20);
             this.label13.TabIndex = 69;
-            this.label13.Text = "Комментарий для компенсации в InVoice:";
+            this.label13.Text = "Комментарий для компенсации в CRM:";
             // 
             // invoiceComment
             // 

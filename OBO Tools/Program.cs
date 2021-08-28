@@ -10,7 +10,7 @@ namespace OBO_Tools
     static class Program
     {
         public static User user = new User();
-        public static String version = "0.1.6C";
+        public static String version = "0.1.6C build 2808211906";
 
         [STAThread]
         static void Main()
