@@ -82,6 +82,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
             this.HistoryDGV.RowTemplate.Height = 29;
             this.HistoryDGV.Size = new System.Drawing.Size(988, 739);
             this.HistoryDGV.TabIndex = 39;
+            this.HistoryDGV.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChosePaymentDGV);
             // 
             // Column1
             // 
@@ -200,7 +201,8 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
             this.Controls.Add(this.HistoryDGV);
             this.Controls.Add(this.button1);
             this.Name = "HistoryWindow";
-            this.Text = "HistoryWindow";
+            this.Text = "OBO Tools";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClosedForm);
             ((System.ComponentModel.ISupportInitialize)(this.HistoryDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

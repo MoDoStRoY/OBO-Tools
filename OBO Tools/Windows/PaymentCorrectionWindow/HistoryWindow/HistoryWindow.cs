@@ -20,6 +20,11 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
             HistoryWindowLogic.ShowWindow();
         }
 
+        private void ClosedForm(object sender, FormClosedEventArgs e)
+        {
+            HistoryWindowLogic.ClosedForm();
+        }
+
         private void BackBtn(object sender, EventArgs e)
         {
             HistoryWindowLogic.BackBtn();
@@ -28,6 +33,11 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
         private void SearchBtn(object sender, EventArgs e)
         {
             HistoryWindowLogic.SearchBtn();
+        }
+
+        private void ChosePaymentDGV(object sender, DataGridViewCellEventArgs e)
+        {
+            HistoryWindowLogic.ChosePaymentDGV(e);
         }
     }
 }

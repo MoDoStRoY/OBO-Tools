@@ -7,6 +7,7 @@ using OBO_Tools.Windows.DealerRequest;
 using OBO_Tools.Windows.ErrorWindow;
 using OBO_Tools.Windows.PaymentCorrectionWindow;
 using OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow;
+using OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow.PaymentWindow;
 using OBO_Tools.Windows.SettingsWindow;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace OBO_Tools.Objects
         public DealerRequestWindow dealerRequestWindow = new DealerRequestWindow(); //Окно запросов по дилерам
         public PaymentCorrectionWindow paymentCorrectionWindow = new PaymentCorrectionWindow(); //Окно корректировок платежей
         public HistoryWindow historyWindow = new HistoryWindow(); //Окно истории платежей
+        public PaymentWindow paymentWindow = new PaymentWindow(); //Окно платежа
 
         public String textError = "Неизвестная ошибка!"; //Стартовый текст ошибки
         public bool takeErrorCodeOfPoint = false; //Маркер получения ошибки по коду точки

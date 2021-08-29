@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OBO_Tools.Objects.PaymentCorrection
 {
-    class Payment
+    public class Payment
     {
         public string TTNumber;
         public string contact;

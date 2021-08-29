@@ -15,6 +15,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
         public static void ShowWindow()
         {
             window.Show();
+            RefreshHistory();
         }
 
         public static void ClosedForm()
@@ -37,6 +38,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
         public static void RefreshHistory()
         {
             List<Payment> paymentList = Program.user.paymentList;
+            window.HistoryDGV.Rows.Clear();
 
             for (int i = 0; i < user.paymentList.Count; i++)
             {
@@ -46,10 +48,31 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow
                 window.HistoryDGV.Rows[i].Cells[1].Value = paymentList[i].TTNumber;
                 window.HistoryDGV.Rows[i].Cells[2].Value = paymentList[i].paymentSum;
                 window.HistoryDGV.Rows[i].Cells[3].Value = paymentList[i].paymentDate;
-                window.HistoryDGV.Rows[i].Cells[4].Value = paymentList[i].correctionSum;
-                window.HistoryDGV.Rows[i].Cells[5].Value = paymentList[i].correctionRefuse;
-                window.HistoryDGV.Rows[i].Cells[6].Value = paymentList[i].incorrectTicket;
+
+                if (paymentList[i].fullCorrection)
+                    window.HistoryDGV.Rows[i].Cells[4].Value = paymentList[i].paymentSum;
+                else
+                    window.HistoryDGV.Rows[i].Cells[4].Value = paymentList[i].correctionSum;
+
+                if (paymentList[i].correctionRefuse)
+                    window.HistoryDGV.Rows[i].Cells[5].Value = "Отказ";
+                else
+                    window.HistoryDGV.Rows[i].Cells[5].Value = "Корректировка";
+
+                if (paymentList[i].incorrectTicket)
+                    window.HistoryDGV.Rows[i].Cells[6].Value = "Да";
+                else
+                    window.HistoryDGV.Rows[i].Cells[6].Value = "Нет";
+
                 window.HistoryDGV.Rows[i].Cells[7].Value = paymentList[i].sourceTicket;
+            }
+        }
+
+        public static void ChosePaymentDGV(DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                user.paymentWindow.ShowWindow(user.paymentList[e.RowIndex]);
             }
         }
     }
