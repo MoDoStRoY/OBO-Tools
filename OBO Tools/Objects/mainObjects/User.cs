@@ -1,9 +1,12 @@
 ﻿using NPOI.HSSF.UserModel;
+using OBO_Tools.Objects.PaymentCorrection;
 using OBO_Tools.Objects.SettingsObject;
 using OBO_Tools.Scripts.DealerRequest;
+using OBO_Tools.Scripts.PaymentCorrection;
 using OBO_Tools.Windows.DealerRequest;
 using OBO_Tools.Windows.ErrorWindow;
 using OBO_Tools.Windows.PaymentCorrectionWindow;
+using OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow;
 using OBO_Tools.Windows.SettingsWindow;
 using System;
 using System.Collections.Generic;
@@ -20,6 +23,7 @@ namespace OBO_Tools.Objects
         public SettingsWindow settingsWindow = new SettingsWindow(); //Окно настроек
         public DealerRequestWindow dealerRequestWindow = new DealerRequestWindow(); //Окно запросов по дилерам
         public PaymentCorrectionWindow paymentCorrectionWindow = new PaymentCorrectionWindow(); //Окно корректировок платежей
+        public HistoryWindow historyWindow = new HistoryWindow(); //Окно истории платежей
 
         public String textError = "Неизвестная ошибка!"; //Стартовый текст ошибки
         public bool takeErrorCodeOfPoint = false; //Маркер получения ошибки по коду точки
@@ -43,6 +47,10 @@ namespace OBO_Tools.Objects
         public String[] contacts; //Буферный массив нужных контактов из книги контактов
         public bool repeatRequest = false;
         //**//
+
+        //**ПЕРЕМЕННЫЕ КОРРЕКТИРОВОК**//
+        public List<Payment> paymentList = JSON.DeserializePayment();
+        //*//
 
         public User()
         {

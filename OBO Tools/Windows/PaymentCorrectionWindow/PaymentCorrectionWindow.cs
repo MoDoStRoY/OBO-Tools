@@ -84,5 +84,10 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         {
             PaymentCorrectionLogic.RefusedCorrectionCB();
         }
+
+        private void HistoryBtn(object sender, EventArgs e)
+        {
+            PaymentCorrectionLogic.HistoryBtn();
+        }
     }
 }

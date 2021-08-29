@@ -1,5 +1,6 @@
 ﻿using OBO_Tools.Objects;
 using OBO_Tools.Scripts.PaymentCorrection;
+using OBO_Tools.Windows.PaymentCorrectionWindow.HistoryWindow;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,16 +14,15 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         static User user = Program.user;
         static PaymentCorrectionWindow window = user.paymentCorrectionWindow;
 
-        static string TTNumber;
-        static string contact;
-        static string BCVariantCLB;
-        static string correctNumber;
-        static string correctFS;
-        static string incorrectNumber;
-        static double paymentSum;
-        static string paymentDate;
-        static double correctionSum;
-        static string sourceTicket;
+        public static string TTNumber;
+        public static string contact;
+        public static string BCVariantCLB;
+        public static string correctNumber;
+        public static string incorrectNumber;
+        public static double paymentSum;
+        public static string paymentDate;
+        public static double correctionSum;
+        public static string sourceTicket;
 
         public static void ShowWindow()
         {
@@ -48,6 +48,9 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             GetDecision();
             GetKassaComment();
             GetInvoiceComment();
+
+            JSON.SerializePayment();
+            HistoryWindowLogic.RefreshHistory();
         }
 
         public static void GetImportBtn()
@@ -295,6 +298,12 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         {
             Clipboard.SetData(DataFormats.Text, (Object)window.cashComment.Text + "\n\n" + window.invoiceComment.Text 
                 + "\n\n" + window.decision.Text);
+        }
+
+        public static void HistoryBtn()
+        {
+            window.Hide();
+            user.historyWindow.ShowWindow();
         }
 
         public static void RefusedCorrectionCB()

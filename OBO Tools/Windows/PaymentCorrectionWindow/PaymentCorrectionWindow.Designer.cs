@@ -75,6 +75,7 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.refusedCorrectionCB = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -497,11 +498,22 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.GetImportBtn);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(14, 722);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(224, 29);
+            this.button10.TabIndex = 94;
+            this.button10.Text = "История";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.HistoryBtn);
+            // 
             // PaymentCorrectionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 763);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.refusedCorrectionCB);
             this.Controls.Add(this.label22);
@@ -605,5 +617,6 @@ namespace OBO_Tools.Windows.PaymentCorrectionWindow
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button9;
         public System.Windows.Forms.CheckBox refusedCorrectionCB;
+        private System.Windows.Forms.Button button10;
     }
 }
